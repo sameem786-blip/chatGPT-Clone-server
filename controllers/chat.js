@@ -33,8 +33,10 @@ exports.createNewChatGroup = async (req, res) => {
       timeStamp: new Date(),
       like: 0,
       dislike: 0,
-      groupId: newChatGroup._id,
+      groupId: newChatGroup[0]._id,
     };
+
+    console.log(chatObj);
 
     const newChat = await Chat.create([chatObj], { session: session });
 
