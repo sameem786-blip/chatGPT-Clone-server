@@ -84,35 +84,11 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.forgetPassword = async (req, res) => {
-  try {
-  } catch (err) {
-    console.error(err);
-    res.status(500).json("Internal Server Error");
-  }
-};
-
 exports.logout = async (req, res) => {
   try {
     res.status(200).json({ message: "user logged out" });
   } catch (err) {
     console.log(err);
-    res.status(500).json("Internal Server Error");
-  }
-};
-
-//microsoft Oauth
-exports.msAuth = async (req, res) => {
-  try {
-  } catch (err) {
-    console.error(err);
-    res.status(500).json("Internal Server Error");
-  }
-};
-exports.msAuthCallback = async (req, res) => {
-  try {
-  } catch (err) {
-    console.error(err);
     res.status(500).json("Internal Server Error");
   }
 };
@@ -196,14 +172,5 @@ exports.googleAuth = async (req, res) => {
   } catch (error) {
     console.error("Error authenticating Google:", error);
     res.status(500).json({ message: "Error authenticating Google" });
-  }
-};
-
-//Apple Oauth
-exports.appleAuth = async (req, res) => {
-  try {
-  } catch (err) {
-    console.error(err);
-    res.status(500).json("Internal Server Error");
   }
 };
