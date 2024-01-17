@@ -1,20 +1,16 @@
 const jwt = require("jsonwebtoken");
-const env = require("dotenv");
 
 module.exports = async (req, res, next) => {
   try {
-    const cookie = req.cookies.cookieAuth;
-    if (!cookie) return res.status(401).json("Not Logged In.");
-    decodedCookie = jwt.verify(cookie, process.env.JWT_SECRET_KEY);
-
+    const token = req.headers.authorization.split(" ")[1];
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
     req.userData = {
-      userName: decodedCookie.name,
-      userId: decodedCookie.userId,
+      name: decodedToken.name,
+      userId: decodedToken.userId,
     };
 
     next();
-  } catch (err) {
-    console.log(err);
-    res.status(401).json("Unauthenticated...");
+  } catch (error) {
+    res.status(401).json({ message: "You are not authenticated!" });
   }
 };

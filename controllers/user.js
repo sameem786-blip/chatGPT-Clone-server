@@ -74,9 +74,12 @@ exports.login = async (req, res) => {
       process.env.JWT_SECRET_KEY
     );
 
+    const userWithToken = { ...userWithoutPassword, token };
+
     res.status(200).json({
+      token: token,
       message: "Login successful",
-      user: userWithoutPassword,
+      user: userWithToken,
     });
   } catch (err) {
     console.error(err);
@@ -152,9 +155,12 @@ exports.googleAuth = async (req, res) => {
         process.env.JWT_SECRET_KEY
       );
 
+      const userWithToken = { ...userWithoutPassword, token };
+
       res.status(200).json({
+        token: token,
         message: "SignUp successful",
-        user: userWithoutPassword,
+        user: userWithToken,
       });
     } else {
       const { encryptedPassword, ...userWithoutPassword } =
@@ -164,9 +170,12 @@ exports.googleAuth = async (req, res) => {
         process.env.JWT_SECRET_KEY
       );
 
+      const userWithToken = { ...userWithoutPassword, token };
+
       res.status(200).json({
+        token: token,
         message: "Login successful",
-        user: userWithoutPassword,
+        user: userWithToken,
       });
     }
   } catch (error) {
